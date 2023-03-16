@@ -2,9 +2,9 @@
 {
     public class PremiumOffer: Offer
     {
-        public override decimal CalculatePrice(Vehicle vehicle)
+        public override void CalculatePrice(Vehicle vehicle)
         {
-            return vehicle.Price + (vehicle.Price * 15) / 100;
+            CalculatedPrice = vehicle.Price + (vehicle.Price * 15) / 100;
         }
     }
 }

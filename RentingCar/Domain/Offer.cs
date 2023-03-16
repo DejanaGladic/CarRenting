@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using RentingCar.Interfaces;
+
 namespace RentingCar.Domain
 {
-    public class Offer: CalculatePrice
+    public class Offer: ICalculatePrice
     {
-        public virtual decimal CalculatePrice(Vehicle vehicle)
+        public decimal CalculatedPrice { get; set; }
+        public virtual void CalculatePrice(Vehicle vehicle)
         {
-            return vehicle.Price;
+            CalculatedPrice=vehicle.Price;
         }
     }
 }
