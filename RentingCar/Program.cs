@@ -1,15 +1,17 @@
-﻿using RentingCar.Domain;
+﻿using RentingCar.Factory;
+using RentingCar.Interfaces;
 using RentingCar.MainClasses;
 
 
-VehiclePicker VehiclePicker = new VehiclePicker();
-Vehicle PickedVehicle = VehiclePicker.PickTheVehicle();
+ICarRepository _carRepository = Factory.CreateCarRepository();
+VehiclePicker vehiclePicker = new VehiclePicker(_carRepository);
+IVehicle pickedCar = vehiclePicker.PickCar();
 
-OfferCreation OfferCreation = new OfferCreation();
-Offer CreatedOffer = OfferCreation.CreateOffer(PickedVehicle);
+OfferCreation offerCreation = new OfferCreation();
+IOffer createdOffer = offerCreation.CreateOffer(pickedCar);
 
-ReceiptDisplay ReceiptDisplay = new ReceiptDisplay();
-ReceiptDisplay.DisplayReceipt(CreatedOffer);
+ShowReceipt showReceipt = new ShowReceipt();
+showReceipt.ViewReceipt(createdOffer);
 
 
 

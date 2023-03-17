@@ -2,12 +2,13 @@
 
 namespace RentingCar.Domain
 {
-    public class Offer: ICalculatePrice
+    public class Offer:  IOffer
     {
         public decimal CalculatedPrice { get; set; }
-        public virtual void CalculatePrice(Vehicle vehicle)
+
+        public virtual void CalculatePrice(IVehicle vehicle)
         {
-            CalculatedPrice=vehicle.Price;
+            CalculatedPrice = vehicle.Price + (vehicle.Price * 20) / 100;
         }
     }
 }

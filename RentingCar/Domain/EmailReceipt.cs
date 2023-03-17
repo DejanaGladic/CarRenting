@@ -1,6 +1,4 @@
-﻿using RentingCar.Interfaces;
-
-namespace RentingCar.Domain
+﻿namespace RentingCar.Domain
 {
     public class EmailReceipt: Receipt
     {

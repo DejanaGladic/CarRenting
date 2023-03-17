@@ -1,6 +1,8 @@
-﻿namespace RentingCar.Domain
+﻿using RentingCar.Interfaces;
+
+namespace RentingCar.Domain
 {
-    public class Vehicle
+    public class Vehicle: IVehicle
     {
         public char Offer { get; set; }
         public decimal Price { get; set; }

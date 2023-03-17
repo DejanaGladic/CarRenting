@@ -1,31 +1,40 @@
-﻿using RentingCar.Data;
-using RentingCar.Domain;
+﻿using RentingCar.Domain;
+using RentingCar.Interfaces;
 
 namespace RentingCar.MainClasses
 {
     public class VehiclePicker
     {
-        public Vehicle PickTheVehicle()
+        ICarRepository _carRepository;
+        public VehiclePicker(ICarRepository carRepository)
+        {
+            _carRepository = carRepository;
+        }
+
+        public IVehicle PickCar()
         {
             Console.WriteLine("Pick the car");
-
-            CarList carList = new CarList();
-            foreach (var value in carList.GetAllCars)
+            foreach (var value in _carRepository.GetAllCars())
             {
                 Console.WriteLine("{0} {1} {2}, offer:{3}, price:{4}",
                     value.Make, value.Model, value.Year, value.Offer, value.Price);
             }
 
             //kao korisnik je izabrao, ne znam kako preko konzole i bez baze
-            Vehicle pickedVehicle = new Car { Make = "Audi", Model = "A3", Year = "2006", Offer = 'p', Price = 2500 };
-
+            IVehicle pickedVehicle = Factory.Factory.CreateVehicle("car");
+            Car pickedCar = (Car)pickedVehicle;
+            pickedCar.Make = "Audi";
+            pickedCar.Model = "A3";
+            pickedCar.Year = "2006";
+            pickedCar.Offer = 'p';
+            pickedCar.Price = 2500;
             Console.WriteLine("------------");
             Console.WriteLine("Picked car is:");
-            Car pickedCar = (Car)pickedVehicle;
+
             Console.WriteLine("{0} {1} {2}, offer:{3}, price:{4}",
                     pickedCar.Make, pickedCar.Model, pickedCar.Year, pickedCar.Offer, pickedCar.Price);
 
-            return pickedVehicle;
+            return pickedCar;
         }
     }
 }

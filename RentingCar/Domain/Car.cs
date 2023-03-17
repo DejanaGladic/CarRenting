@@ -1,11 +1,10 @@
-﻿
-namespace RentingCar.Domain
+﻿namespace RentingCar.Domain
 {
-    public class Car: Vehicle
+    public class Car : Vehicle
     {
-        public String Make { get; set; }
-        public String Model { get; set; }
-        public String Year { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string Year { get; set; }
        
     }
 }

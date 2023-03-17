@@ -1,27 +1,13 @@
-﻿using RentingCar.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RentingCar.Interfaces;
 
 namespace RentingCar.MainClasses
 {
     public class OfferCreation
     {
-        public Offer CreateOffer(Vehicle pickedVehicle)
+        public IOffer CreateOffer(IVehicle pickedVehicle)
         {
-            Offer offer;
-            switch (pickedVehicle.Offer)
-            {
-                case 's':
-                    offer = new StandardOffer();
-                    break;
-                default:
-                    offer = new PremiumOffer();
-                    break;
-            }
-
+            IOffer offer;
+            offer = Factory.Factory.CreateOffer(pickedVehicle.Offer);          
             offer.CalculatePrice(pickedVehicle);
 
             return offer;

@@ -1,9 +1,7 @@
-﻿using RentingCar.Domain;
-
-namespace RentingCar.Interfaces
+﻿namespace RentingCar.Interfaces
 {
     public interface ICalculatePrice
     {
-        public void CalculatePrice(Vehicle vehicle);
+        public void CalculatePrice(IVehicle vehicle);
     }
 }
