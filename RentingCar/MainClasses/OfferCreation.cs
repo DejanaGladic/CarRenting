@@ -4,13 +4,25 @@ namespace RentingCar.MainClasses
 {
     public class OfferCreation
     {
-        public IOffer CreateOffer(IVehicle pickedVehicle)
+        IOffer _offer;
+        IVehicle _vehicle;
+        public OfferCreation(IOffer offer, IVehicle vehicle)
         {
-            IOffer offer;
-            offer = Factory.Factory.CreateOffer(pickedVehicle.Offer);          
-            offer.CalculatePrice(pickedVehicle);
+            _offer = offer;
+            _vehicle = vehicle;
+        }
 
-            return offer;
+        public IOffer CreateOffer()
+        {
+            _offer = Factory.Factory.CreateOffer(_vehicle.Offer);
+            _offer.CalculatePrice(_vehicle);
+
+            return _offer;
+        }
+
+        public IOffer GetOffer()
+        {
+            return _offer;
         }
     }
 }

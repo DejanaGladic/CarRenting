@@ -3,12 +3,14 @@ using RentingCar.Interfaces;
 
 namespace RentingCar.MainClasses
 {
-    public class VehiclePicker
+    public class CarPicker
     {
         ICarRepository _carRepository;
-        public VehiclePicker(ICarRepository carRepository)
+        IVehicle _car;
+        public CarPicker(ICarRepository carRepository, IVehicle car)
         {
             _carRepository = carRepository;
+            _car = car;
         }
 
         public IVehicle PickCar()
@@ -21,8 +23,7 @@ namespace RentingCar.MainClasses
             }
 
             //kao korisnik je izabrao, ne znam kako preko konzole i bez baze
-            IVehicle pickedVehicle = Factory.Factory.CreateVehicle("car");
-            Car pickedCar = (Car)pickedVehicle;
+            Car pickedCar = (Car)_car;
             pickedCar.Make = "Audi";
             pickedCar.Model = "A3";
             pickedCar.Year = "2006";
@@ -35,6 +36,10 @@ namespace RentingCar.MainClasses
                     pickedCar.Make, pickedCar.Model, pickedCar.Year, pickedCar.Offer, pickedCar.Price);
 
             return pickedCar;
+        }
+
+        public IVehicle GetCar() { 
+            return _car;
         }
     }
 }
